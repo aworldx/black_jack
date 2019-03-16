@@ -1,5 +1,5 @@
-require './base_participant'
-require '../input_services/terminal'
+require_relative './base_participant'
+require_relative '../input_services/terminal'
 
 class Human < BaseParticipant
   def initialize(name, role, input_service = nil)

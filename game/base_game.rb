@@ -1,4 +1,4 @@
-require '../publishers/terminal'
+require_relative '../publishers/terminal'
 
 class BaseGame
   attr_reader :players, :current_player

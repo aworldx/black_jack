@@ -1,4 +1,4 @@
-require '../base_game'
+require_relative '../base_game'
 
 module BlackJack
   class Game < BaseGame

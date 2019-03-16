@@ -1,4 +1,4 @@
-require '../base_role'
+require_relative '../base_role'
 
 module BlackJack
   class Player

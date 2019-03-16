@@ -1,4 +1,4 @@
-require './base_participant'
+require_relative './base_participant'
 
 class Computer < BaseParticipant
   def move(available_actions)
