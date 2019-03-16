@@ -1,4 +1,4 @@
-class Deck
+class BaseDeck
   attr_reader :cards
 
   def initialize
