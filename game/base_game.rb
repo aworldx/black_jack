@@ -2,13 +2,15 @@ require_relative '../publishers/terminal'
 require_relative './base_processor'
 
 class BaseGame
-  attr_reader :players, :current_player, :bank
+  attr_reader :deck, :players, :current_player, :bank, :bet_amount
 
-  def initialize(output_service = nil, game_processor = nil)
+  def initialize(deck, output_service = nil, game_processor = nil)
+    @deck = deck
     @players = []
     @output_service = output_service || Terminal.new
     @processor = game_processor || BaseProcessor.new(self)
     @bank = 0.0
+    @bet_amount = 0.0
   end
 
   def add_player(new_player)

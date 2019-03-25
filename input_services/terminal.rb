@@ -9,4 +9,9 @@ class Terminal
     selected_action = gets.chomp
     items[selected_action.to_i]
   end
+
+  def enter_value(title)
+    puts title
+    gets.chomp
+  end
 end

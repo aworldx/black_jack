@@ -1,5 +1,5 @@
-require '../base_deck'
-require '../card'
+require_relative '../base_deck'
+require_relative '../card'
 
 module BlackJack
   class Deck < BaseDeck

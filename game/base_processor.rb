@@ -3,9 +3,7 @@ class BaseProcessor
     @game = game
   end
 
-  def move
-    game.finish
-  end
+  def move; end
 
   private
 

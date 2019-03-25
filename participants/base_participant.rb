@@ -1,14 +1,19 @@
 class BaseParticipant
-  attr_reader :name, :role, :bank
+  attr_reader :name, :bank, :cards
 
-  def initialize(name, role, bank = 0.0)
-    @name = name
-    @role = role
-    @bank = bank
+  def initialize(params)
+    @name = params[:name] || 'anonymous'
+    @bank = params[:bank] || 0.0
+    @cards = []
+
+    self.extend(params[:role]) if params[:role]
   end
 
-  def move(available_actions)
-    raise "sorry, i can't move, i am just a viewer"
+  def has_ability?(ability)
+    self.respond_to?(ability)
   end
+
+  private
+
+  attr_writer :bank
 end
-

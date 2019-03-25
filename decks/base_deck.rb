@@ -12,6 +12,10 @@ class BaseDeck
     cards.shuffle!
   end
 
+  def take_cards(count)
+    cards.pop(count)
+  end
+
   private
 
   def generate

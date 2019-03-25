@@ -5,4 +5,8 @@ class Card
     @title = title
     @points = points
   end
+
+  def to_s
+    "#{title}"
+  end
 end
