@@ -1,34 +1,18 @@
 module BlackJack
   module Player
-    def skip
-      puts 'skip'
-    end
-
-    def take_card(deck)
-      puts 'take'
-
-      cards << deck.take_cards(1)
-    end
-
-    def open_cards
-      puts 'open'
-
-      puts cards
-    end
-
     def make_bets(bet_amount)
-      puts 'bets'
       self.bank -= bet_amount
-
-      puts self.bank
+      bet_amount
     end
 
     def first_move
       true
     end
 
-    def move
-      puts 'move'
+    def available_actions
+      actions = %i[skip open_cards]
+      actions << :take_card if cards.size == 2
+      actions
     end
   end
 end

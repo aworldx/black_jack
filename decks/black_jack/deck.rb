@@ -3,31 +3,30 @@ require_relative '../card'
 
 module BlackJack
   class Deck < BaseDeck
-
     private
 
     def generate
       suits.each do |suit|
-        numbers.each do |number|
-          cards << Card.new("#{number}#{suit}", number)
+        digits.each do |digit|
+          cards << Card.new(type: :numerical, suit: suit, digit: digit)
         end
 
         pictures.each do |pic|
-          cards << Card.new("#{pic}#{suit}", pic == :T ? 11 : 10)
+          cards << Card.new(type: :picture, suit: suit, sign: pic)
         end
       end
     end
 
     def suits
-      %w(+ <3 ^ <>)
+      %w[+ <3 ^ <>]
     end
 
-    def numbers
+    def digits
       2..10
     end
 
     def pictures
-      [:V, :D, :K, :T]
+      %i[V D K T]
     end
   end
 end

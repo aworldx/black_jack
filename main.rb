@@ -4,12 +4,14 @@ require './participants/human'
 require './participants/computer'
 require './roles/black_jack/dealer'
 require './roles/black_jack/player'
+require './participants/strategy/black_jack'
 
 the_deck = BlackJack::Deck.new
 
 the_game = BlackJack::Game.new(the_deck)
 
-player1 = Computer.new(name: 'Robot', role: BlackJack::Dealer, bank: 100)
+player1 = Computer.new(name: 'Robot', role: BlackJack::Dealer, bank: 100,
+                       strategy: Strategy::BlackJack)
 the_game.add_player(player1)
 
 player2 = Human.new(role: BlackJack::Player, bank: 100)

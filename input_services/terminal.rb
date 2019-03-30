@@ -3,11 +3,11 @@ class Terminal
     puts "Please, select action (type action's index):"
 
     items.each_with_index do |item, index|
-      "#{index}. #{item.title}"
+      p "#{index + 1}. #{item}"
     end
 
     selected_action = gets.chomp
-    items[selected_action.to_i]
+    items[selected_action.to_i - 1]
   end
 
   def enter_value(title)

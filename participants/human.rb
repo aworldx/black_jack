@@ -10,13 +10,21 @@ class Human < BaseParticipant
     @input_service = params[:input_service] || Terminal.new
   end
 
-  def move(available_actions)
-    selected_action = Terminal.select(available_actions)
-    selected_action.execute
+  def move(_game)
+    selected_action = input_service.select(available_actions)
+    selected_action
   end
 
   def call_name
     self.name = input_service.enter_value('Enter your name')
+  end
+
+  def show_cards
+    cards.map(&:to_s).join(', ')
+  end
+
+  def check_points
+    points
   end
 
   private

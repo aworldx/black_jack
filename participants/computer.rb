@@ -1,8 +1,13 @@
 require_relative './base_participant'
 
 class Computer < BaseParticipant
-  def move(available_actions)
-    selected_actions = available_actions.sample
-    selected_actions.execute
+  def initialize(params)
+    super(params)
+
+    extend(params[:strategy]) if params[:strategy]
+  end
+
+  def move(_game)
+    select_action(self)
   end
 end

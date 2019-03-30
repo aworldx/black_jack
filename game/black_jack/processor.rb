@@ -3,58 +3,35 @@ require_relative '../base_processor'
 module BlackJack
   class Processor < BaseProcessor
     def move
-      greetings
+      game.greetings
+      game.publish_banks
 
       loop do
-        # break unless game.can_be_continued?
+        break unless game.game_can_be_continued?
 
-        deal_cards
-        make_bets
+        game.make_bets
+        game.publish_banks
 
-        player_move
+        game.deal_cards(2)
+        game.show_players_cards
 
-        break unless game.can_be_continued?
+        loop do
+          break unless game.round_can_be_continued?
+
+          game.check_players_points
+          game.player_move
+        end
+
+        game.open_all_cards
+        game.show_players_cards
+        game.check_players_points
+
+        game.move_bank(game.get_winners)
+        game.publish_banks
+        game.return_players_cards
       end
 
       game.finish
-    end
-
-    private
-
-    def greetings
-      game.players.each do |player|
-        next unless player.respond_to?(:call_name)
-
-        player.call_name
-        puts "Hello, #{player.name}"
-      end
-    end
-
-    def deal_cards
-      current_dealer = game.players.select { |player| player.has_ability?(:deal_cards) }.first
-      return unless current_dealer
-
-      game.players.each do |player|
-        current_dealer.deal_cards(game.deck, player)
-
-        puts player.cards
-      end
-    end
-
-    def make_bets
-      game.players.each do |player|
-        next unless player.has_ability?(:make_bets)
-
-        player.make_bets(game.bet_amount)
-      end
-    end
-
-    def player_move
-      game.players.each do |player|
-        next unless player.has_ability?(:move)
-
-        player.move
-      end
     end
   end
 end
